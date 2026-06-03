@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ion Pacific Structured Liquidity - Fact Brief</title>
+  <style>
+    :root {
+      --ink: #1f2933;
+      --muted: #66737f;
+      --paper: #f7f5ef;
+      --white: #ffffff;
+      --line: #d8ddd9;
+      --navy: #17324d;
+      --teal: #1f7a78;
+      --green: #4f8b5e;
+      --gold: #bd862b;
+      --red: #b85b4d;
+      --blue: #527ca8;
+      --soft-teal: #e7f2f0;
+      --soft-gold: #f7eddc;
+      --soft-red: #f5e7e4;
+      --soft-blue: #eaf0f6;
+      --soft-gray: #eef1ef;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 245, 239, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      display: flex;
+      width: min(1180px, calc(100% - 40px));
+      min-height: 58px;
+      margin: 0 auto;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      padding: 7px 9px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      background: var(--soft-gray);
+      color: var(--ink);
+    }
+
+    .band {
+      width: 100%;
+      overflow-x: hidden;
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+
+    .band.white {
+      background: var(--white);
+    }
+
+    .band.blue {
+      background: var(--soft-blue);
+    }
+
+    .band.gold {
+      background: var(--soft-gold);
+    }
+
+    .inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 42px 0;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(125deg, rgba(23, 50, 77, 0.99), rgba(23, 50, 77, 0.92) 56%, rgba(31, 122, 120, 0.88)),
+        var(--navy);
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: 4%;
+      bottom: -84px;
+      width: 440px;
+      height: 310px;
+      background:
+        linear-gradient(90deg, transparent 0 24%, rgba(255,255,255,0.12) 24% 25%, transparent 25% 49%, rgba(255,255,255,0.12) 49% 50%, transparent 50% 74%, rgba(255,255,255,0.12) 74% 75%, transparent 75%),
+        linear-gradient(0deg, transparent 0 24%, rgba(255,255,255,0.12) 24% 25%, transparent 25% 49%, rgba(255,255,255,0.12) 49% 50%, transparent 50% 74%, rgba(255,255,255,0.12) 74% 75%, transparent 75%);
+      transform: rotate(-11deg);
+      opacity: 0.75;
+    }
+
+    .hero .inner {
+      position: relative;
+      z-index: 1;
+      padding-top: 58px;
+      padding-bottom: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.84);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 22px 0 16px;
+      font-size: 54px;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero-lead {
+      max-width: 870px;
+      margin: 0;
+      color: rgba(255,255,255,0.88);
+      font-size: 19px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .hero-fact {
+      min-height: 118px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,0.20);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.09);
+    }
+
+    .hero-fact-label {
+      color: rgba(255,255,255,0.72);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-fact-value {
+      margin-top: 7px;
+      color: var(--white);
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.08;
+    }
+
+    .hero-fact-note {
+      margin-top: 7px;
+      color: rgba(255,255,255,0.72);
+      font-size: 13px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.52fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .kicker {
+      margin-bottom: 8px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 31px;
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .panel {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(29, 38, 48, 0.06);
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .panel.soft {
+      background: var(--soft-gray);
+      box-shadow: none;
+    }
+
+    .panel.teal {
+      border-color: #c7dedb;
+      background: var(--soft-teal);
+      box-shadow: none;
+    }
+
+    .panel.gold {
+      border-color: #e2c58a;
+      background: var(--soft-gold);
+      box-shadow: none;
+    }
+
+    .panel.red {
+      border-color: #e3b6ad;
+      background: var(--soft-red);
+      box-shadow: none;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .tag.teal {
+      background: var(--soft-teal);
+      color: var(--teal);
+    }
+
+    .tag.gold {
+      background: #fff7e4;
+      color: #805b1a;
+    }
+
+    .tag.red {
+      background: var(--soft-red);
+      color: #884236;
+    }
+
+    .plain-answer {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .answer-main {
+      padding: 24px;
+      border: 1px solid #c7dedb;
+      border-radius: 8px;
+      background: var(--soft-teal);
+    }
+
+    .answer-main h3 {
+      color: var(--navy);
+      font-size: 26px;
+    }
+
+    .answer-main p {
+      color: #285b5a;
+      font-size: 16px;
+    }
+
+    .not-box {
+      display: grid;
+      gap: 12px;
+    }
+
+    .not-item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .not-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .not-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .money-flow {
+      display: grid;
+      grid-template-columns: 1fr 78px 1fr 78px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .flow-node {
+      min-height: 160px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .flow-node strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 19px;
+    }
+
+    .flow-node span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .arrow {
+      height: 42px;
+      position: relative;
+    }
+
+    .arrow::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 4px;
+      right: 14px;
+      height: 3px;
+      background: var(--teal);
+    }
+
+    .arrow::after {
+      content: "";
+      position: absolute;
+      top: 13px;
+      right: 4px;
+      width: 16px;
+      height: 16px;
+      border-top: 3px solid var(--teal);
+      border-right: 3px solid var(--teal);
+      transform: rotate(45deg);
+    }
+
+    .waterfall {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .waterfall-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .waterfall-row {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr) 88px;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+    }
+
+    .waterfall-row:last-child {
+      border-bottom: 0;
+    }
+
+    .row-label {
+      font-weight: 800;
+    }
+
+    .track {
+      height: 24px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--soft-gray);
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 4px;
+    }
+
+    .row-value {
+      color: var(--muted);
+      font-weight: 800;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .term-table,
+    .scenario-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--white);
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #edf1ef;
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 800;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .num {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      white-space: normal;
+    }
+
+    .status {
+      display: inline-flex;
+      padding: 4px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .known {
+      background: var(--soft-teal);
+      color: var(--teal);
+    }
+
+    .open {
+      background: var(--soft-gold);
+      color: #805b1a;
+    }
+
+    .risk {
+      background: var(--soft-red);
+      color: #884236;
+    }
+
+    .structure-options {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .option-step {
+      display: inline-grid;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 12px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--soft-teal);
+      color: var(--teal);
+      font-weight: 800;
+    }
+
+    .asset-bars {
+      display: grid;
+      gap: 11px;
+    }
+
+    .asset-row {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr) 74px;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .asset-name {
+      font-weight: 800;
+    }
+
+    .asset-track {
+      height: 20px;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--soft-gray);
+    }
+
+    .asset-track span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+    }
+
+    .asset-value {
+      color: var(--muted);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .callout {
+      margin-top: 16px;
+      padding: 15px 17px;
+      border-left: 4px solid var(--red);
+      border-radius: 6px;
+      background: var(--soft-red);
+      color: #743b32;
+      font-size: 14px;
+    }
+
+    .callout.teal {
+      border-left-color: var(--teal);
+      background: var(--soft-teal);
+      color: #235c5a;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .question-list li {
+      position: relative;
+      padding-left: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .question-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--teal);
+      border-radius: 3px;
+      background: var(--white);
+    }
+
+    .takeaway-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .footer {
+      padding: 24px 0 34px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .nav-inner {
+        display: block;
+        padding: 12px 0;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        margin-top: 8px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero-facts,
+      .grid-4,
+      .grid-3,
+      .structure-options,
+      .takeaway-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-head,
+      .plain-answer,
+      .waterfall {
+        grid-template-columns: 1fr;
+      }
+
+      .money-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .arrow {
+        height: 34px;
+        transform: rotate(90deg);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .inner,
+      .nav-inner {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .inner {
+        padding: 30px 0;
+      }
+
+      .hero .inner {
+        padding-top: 42px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      .hero-facts,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .structure-options,
+      .category-grid,
+      .takeaway-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .waterfall-row,
+      .asset-row {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .row-value,
+      .asset-value,
+      .num {
+        text-align: left;
+      }
+
+      .term-table,
+      .scenario-table {
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 9px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">Animoca Brands | Ion Pacific Fact Brief</div>
+      <div class="nav-links">
+        <a href="#what">What It Is</a>
+        <a href="#flow">Money Flow</a>
+        <a href="#structure">Structure</a>
+        <a href="#terms">Terms</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#questions">Questions</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="inner">
+      <div class="eyebrow">Ion Pacific structured liquidity proposal</div>
+      <h1>Plain-English fact brief on the proposed portfolio-backed liquidity deal</h1>
+      <p class="hero-lead">
+        Ion Pacific may provide $10m to $12.5m of liquidity against a basket of illiquid investments.
+        This page explains the facts first: what the deal is, how money flows, what non-recourse means,
+        what structures are possible, and where we still need answers.
+      </p>
+
+      <div class="hero-facts">
+        <div class="hero-fact">
+          <div class="hero-fact-label">Potential liquidity</div>
+          <div class="hero-fact-value">$10m to $12.5m</div>
+          <div class="hero-fact-note">Indicated by Ion after initial review.</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label">Portfolio reference value</div>
+          <div class="hero-fact-value">~$40m</div>
+          <div class="hero-fact-note">$43m basket, $40m in model.</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label">Ion's stated position</div>
+          <div class="hero-fact-value">Non-recourse</div>
+          <div class="hero-fact-note">Needs legal confirmation.</div>
+        </div>
+        <div class="hero-fact">
+          <div class="hero-fact-label">Current state</div>
+          <div class="hero-fact-value">Exploratory</div>
+          <div class="hero-fact-note">No final terms yet.</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="band white" id="what">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Facts first</div>
+          <h2>What is this deal?</h2>
+        </div>
+        <p>
+          The easiest way to read it: Animoca gets cash now, Ion gets a senior claim on future proceeds from a defined investment basket, and then shares in upside after its senior claim is recovered.
+        </p>
+      </div>
+
+      <div class="plain-answer">
+        <div class="answer-main">
+          <h3>It is portfolio-backed liquidity, not a simple sale and not a normal loan.</h3>
+          <p>
+            Animoca is not simply selling the whole portfolio today. Ion is offering cash upfront against future distributions
+            from selected illiquid investments. The exact legal form is still open, but the commercial idea is a waterfall:
+            Ion gets paid first, then remaining upside is shared.
+          </p>
+        </div>
+
+        <div class="not-box">
+          <div class="not-item">
+            <strong>Not a clean asset sale</strong>
+            <span>Ion says Animoca can retain full shareholding, voting rights, and board seats where applicable.</span>
+          </div>
+          <div class="not-item">
+            <strong>Not a plain loan</strong>
+            <span>Ion says it is non-recourse, meaning recovery should be limited to the basket / proceeds.</span>
+          </div>
+          <div class="not-item">
+            <strong>Closer to NAV financing</strong>
+            <span>Cash now in exchange for senior recovery plus upside participation in future proceeds.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout teal">
+        Key framing: the deal may give liquidity without an outright sale, but it can still be expensive because Ion receives priority economics and may receive upside participation.
+      </div>
+      <div class="callout">
+        Open point: if a single asset exits, we need to know whether those proceeds are immediately swept through the waterfall or tracked at the total basket level. This affects how much cash Animoca keeps from early exits and when Ion's PIK stops accruing.
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="flow">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Illustration</div>
+          <h2>How money flows</h2>
+        </div>
+        <p>
+          The facts from Ion's email and the illustrative model point to this sequence. Final PIK rate and split remain open.
+        </p>
+      </div>
+
+      <div class="money-flow">
+        <div class="flow-node">
+          <strong>1. Ion funds cash</strong>
+          <span>Ion provides $10m to $12.5m through a dedicated deal SPV.</span>
+        </div>
+        <div class="arrow" aria-hidden="true"></div>
+        <div class="flow-node">
+          <strong>2. Portfolio generates proceeds</strong>
+          <span>Future exits or distributions from the basket are paid into the deal waterfall.</span>
+        </div>
+        <div class="arrow" aria-hidden="true"></div>
+        <div class="flow-node">
+          <strong>3. Waterfall allocates proceeds</strong>
+          <span>Ion recovers capital plus PIK first. After Level 1, residual upside is shared.</span>
+        </div>
+      </div>
+
+      <div class="grid-3" style="margin-top: 18px;">
+        <div class="panel teal">
+          <div class="tag teal">Level 1</div>
+          <h3>Ion gets paid first</h3>
+          <p>All proceeds first go to Ion until it recovers invested capital plus accrued PIK / preferred return.</p>
+        </div>
+        <div class="panel gold">
+          <div class="tag gold">PIK stops</div>
+          <h3>PIK does not run forever</h3>
+          <p>Ion clarified that PIK accrues only until Waterfall Level 1 is recovered, then the upside-sharing layer begins.</p>
+        </div>
+        <div class="panel red">
+          <div class="tag red">Five-year trigger</div>
+          <h3>Potential sale right</h3>
+          <p>If Level 1 is not recovered within five years, Ion would typically require the right to sell part of the underlying assets.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Plain-English definition</div>
+          <h2>What does non-recourse mean here?</h2>
+        </div>
+        <p>
+          This is the most important downside concept. Non-recourse is helpful only if the legal documents truly limit Ion to the agreed basket / proceeds.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel teal">
+          <div class="tag teal">If truly non-recourse</div>
+          <h3>Ion's downside is limited to the basket</h3>
+          <p>
+            If Ion invests $10m and expects to recover $15.7m, but the portfolio only produces $6m,
+            Ion should get $6m and absorb the shortfall. Ion should not be able to demand the missing amount from Animoca's other cash or assets.
+          </p>
+        </div>
+        <div class="panel red">
+          <div class="tag red">What would weaken this</div>
+          <h3>Backdoor recourse</h3>
+          <p>
+            We should check for any guarantee, NAV top-up, margin call, asset replacement obligation,
+            mandatory buyback, cross-collateral, or repayment obligation outside the basket proceeds.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="structure">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Legal mechanics</div>
+          <h2>Three possible deal structures Ion mentioned</h2>
+        </div>
+        <p>
+          The commercial economics may be similar, but the legal, tax, accounting, consent, and control consequences can be very different.
+        </p>
+      </div>
+
+      <div class="structure-options">
+        <div class="panel">
+          <div class="option-step">1</div>
+          <h3>New co-owned SPV</h3>
+          <p>Relevant assets are transferred into a new SPV co-owned by Ion and Animoca. The SPV agreement sets the waterfall.</p>
+          <div class="callout">Key issue: can each asset actually be transferred, and which Animoca entity must sign?</div>
+        </div>
+        <div class="panel">
+          <div class="option-step">2</div>
+          <h3>Pledge or escrow</h3>
+          <p>Assets are pledged and/or transferred into an independently managed escrow account, with a separate waterfall agreement.</p>
+          <div class="callout">Key issue: does this avoid transfer consents, or still require portfolio company / SPV approvals?</div>
+        </div>
+        <div class="panel">
+          <div class="option-step">3</div>
+          <h3>Forward sale agreement</h3>
+          <p>A forward sale agreement plus escrow or another contractual mechanism protects both parties' commercial rights.</p>
+          <div class="callout">Key issue: could this be treated like a sale, derivative, financing, or something else for accounting/tax?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white" id="terms">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Terms</div>
+          <h2>Terms we know vs. terms still open</h2>
+        </div>
+        <p>
+          Treat this like an indicative term sheet. Some points are stated in Ion's email; some are only from the illustrative spreadsheet.
+        </p>
+      </div>
+
+      <table class="term-table" aria-label="Terms">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Current understanding</th>
+            <th>Status</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Liquidity size</td>
+            <td>$10m to $12.5m backed by roughly $40m NAV.</td>
+            <td><span class="status open">Open</span></td>
+            <td>Actual amount may change after Ion's diligence and asset haircuts.</td>
+          </tr>
+          <tr>
+            <td>Recourse</td>
+            <td>Ion described the liquidity solution as non-recourse.</td>
+            <td><span class="status known">Stated</span></td>
+            <td>Must confirm no guarantee, top-up, or backdoor repayment obligation.</td>
+          </tr>
+          <tr>
+            <td>Control</td>
+            <td>Ion said Animoca retains full control, shareholding, voting rights, and board seats where applicable.</td>
+            <td><span class="status known">Stated</span></td>
+            <td>Must reconcile with any SPV transfer, escrow, pledge, or sale right.</td>
+          </tr>
+          <tr>
+            <td>PIK / preferred return</td>
+            <td>Spreadsheet model uses 9.5%, but Ion said numbers are illustrative placeholders.</td>
+            <td><span class="status open">Open</span></td>
+            <td>PIK rate drives true cost of capital.</td>
+          </tr>
+          <tr>
+            <td>PIK duration</td>
+            <td>PIK accrues only through Waterfall Level 1 and stops once Ion recovers capital plus PIK.</td>
+            <td><span class="status known">Stated</span></td>
+            <td>This is helpful, but timing mechanics still need documentation.</td>
+          </tr>
+          <tr>
+            <td>Upside sharing</td>
+            <td>Spreadsheet model shows 75% Animoca / 25% Ion after Level 1.</td>
+            <td><span class="status open">Open</span></td>
+            <td>Residual share is the main upside cost if the portfolio performs well.</td>
+          </tr>
+          <tr>
+            <td>Term</td>
+            <td>Ion said there is no fixed term to the liquidity.</td>
+            <td><span class="status known">Stated</span></td>
+            <td>No maturity sounds flexible, but five-year sale rights could act like a maturity trigger.</td>
+          </tr>
+          <tr>
+            <td>Five-year sale right</td>
+            <td>Ion may require the right to sell part of the assets if Level 1 is not recovered within five years.</td>
+            <td><span class="status risk">Key risk</span></td>
+            <td>This could create control leakage or force sales at a bad time.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="band blue" id="scenarios">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Illustrative economics</div>
+          <h2>What happens in downside and upside?</h2>
+        </div>
+        <p>
+          This is based on the old illustrative model only: $10m funded, 9.5% PIK for five years, and 75% / 25% residual split. Ion has not confirmed final economics.
+        </p>
+      </div>
+
+      <div class="waterfall">
+        <div class="waterfall-box">
+          <div class="waterfall-row">
+            <div class="row-label">Exit NAV at 3.0x</div>
+            <div class="track"><div class="fill" style="width:100%; background:var(--blue);"></div></div>
+            <div class="row-value">$120.0m</div>
+          </div>
+          <div class="waterfall-row">
+            <div class="row-label">Ion priority</div>
+            <div class="track"><div class="fill" style="width:13%; background:var(--gold);"></div></div>
+            <div class="row-value">$15.7m</div>
+          </div>
+          <div class="waterfall-row">
+            <div class="row-label">Ion upside share</div>
+            <div class="track"><div class="fill" style="width:22%; background:var(--teal);"></div></div>
+            <div class="row-value">$26.1m</div>
+          </div>
+          <div class="waterfall-row">
+            <div class="row-label">Animoca residual</div>
+            <div class="track"><div class="fill" style="width:65%; background:var(--green);"></div></div>
+            <div class="row-value">$78.2m</div>
+          </div>
+        </div>
+
+        <div class="panel gold">
+          <div class="tag gold">Example at 3.0x</div>
+          <h3>Ion gets $41.8m on $10m funded</h3>
+          <p>
+            Animoca receives $10m upfront plus $78.2m at exit. This shows why the deal may be useful for liquidity but expensive if the assets perform strongly.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 22px;">
+        <table class="scenario-table" aria-label="Illustrative scenarios">
+          <thead>
+            <tr>
+              <th>Portfolio exit</th>
+              <th class="num">Exit multiple</th>
+              <th class="num">Ion proceeds</th>
+              <th class="num">Animoca later</th>
+              <th class="num">Upfront cash</th>
+              <th>Plain-English read</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$0m</td>
+              <td class="num">0.00x</td>
+              <td class="num">$0.0m</td>
+              <td class="num">$0.0m</td>
+              <td class="num">$10.0m</td>
+              <td>If truly non-recourse, Ion absorbs the loss.</td>
+            </tr>
+            <tr>
+              <td>$10m</td>
+              <td class="num">0.25x</td>
+              <td class="num">$10.0m</td>
+              <td class="num">$0.0m</td>
+              <td class="num">$10.0m</td>
+              <td>Ion takes all proceeds until senior recovery starts.</td>
+            </tr>
+            <tr>
+              <td>$20m</td>
+              <td class="num">0.50x</td>
+              <td class="num">$16.8m</td>
+              <td class="num">$3.2m</td>
+              <td class="num">$10.0m</td>
+              <td>Animoca gets only limited later proceeds.</td>
+            </tr>
+            <tr>
+              <td>$40m</td>
+              <td class="num">1.00x</td>
+              <td class="num">$21.8m</td>
+              <td class="num">$18.2m</td>
+              <td class="num">$10.0m</td>
+              <td>Even flat NAV is costly due to PIK and sharing.</td>
+            </tr>
+            <tr>
+              <td>$120m</td>
+              <td class="num">3.00x</td>
+              <td class="num">$41.8m</td>
+              <td class="num">$78.2m</td>
+              <td class="num">$10.0m</td>
+              <td>Upside cost becomes meaningful.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Basket</div>
+          <h2>What assets are in the indicative basket?</h2>
+        </div>
+        <p>
+          The basket is concentrated. Hex Trust and Dunamu / Upbit represent roughly two-thirds of the value.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="asset-bars">
+          <div class="asset-row"><div class="asset-name">Hex Trust</div><div class="asset-track"><span style="width:34.9%;"></span></div><div class="asset-value">$15m</div></div>
+          <div class="asset-row"><div class="asset-name">Dunamu / Upbit SPV</div><div class="asset-track"><span style="width:32.6%;"></span></div><div class="asset-value">$14m</div></div>
+          <div class="asset-row"><div class="asset-name">Colossal Bioscience</div><div class="asset-track"><span style="width:11.6%;"></span></div><div class="asset-value">$5m</div></div>
+          <div class="asset-row"><div class="asset-name">Sygnum Bank</div><div class="asset-track"><span style="width:7.0%;"></span></div><div class="asset-value">$3m</div></div>
+          <div class="asset-row"><div class="asset-name">Kraken SPV</div><div class="asset-track"><span style="width:4.7%;"></span></div><div class="asset-value">$2m</div></div>
+          <div class="asset-row"><div class="asset-name">Transak</div><div class="asset-track"><span style="width:4.7%;"></span></div><div class="asset-value">$2m</div></div>
+          <div class="asset-row"><div class="asset-name">Nothing</div><div class="asset-track"><span style="width:2.3%;"></span></div><div class="asset-value">$1m</div></div>
+          <div class="asset-row"><div class="asset-name">Ledger</div><div class="asset-track"><span style="width:2.3%;"></span></div><div class="asset-value">$1m</div></div>
+        </div>
+
+        <div class="panel red">
+          <div class="tag red">Valuation watchout</div>
+          <h3>Ion is placing limited weight on Colossal</h3>
+          <p>
+            Ion specifically said it is placing limited weight on Colossal Biosciences in light of recent developments.
+            If Colossal is haircut or excluded, the effective support for Ion's liquidity is lower than the headline basket.
+          </p>
+          <div class="callout teal">
+            We need to reconcile $43m basket value vs. $40m model NAV vs. Ion's asset-by-asset haircut.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band gold" id="questions">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Open points</div>
+          <h2>Questions and concerns by category</h2>
+        </div>
+        <p>
+          After the fact pages above, these are the questions we should ask the deal team and Ion Pacific.
+        </p>
+      </div>
+
+      <div class="category-grid">
+        <div class="panel">
+          <div class="tag gold">Deal rationale</div>
+          <h3>Why are we doing this?</h3>
+          <ul class="question-list">
+            <li>What is the intended use of the $10m to $12.5m?</li>
+            <li>Is the liquidity urgent or opportunistic?</li>
+            <li>Have we compared this against a direct secondary sale, NAV loan, asset-level financing, or selling one position?</li>
+            <li>What is our walk-away position?</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="tag gold">Deal structure</div>
+          <h3>How can the structure work in practice?</h3>
+          <ul class="question-list">
+            <li>Which legal entity owns each asset today?</li>
+            <li>Do different holding entities need to sign different documents?</li>
+            <li>Can assets actually be transferred into a new SPV?</li>
+            <li>Would transfers require portfolio company consent, ROFR waiver, pre-emption waiver, board approval, or SPV GP consent?</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="tag gold">Terms</div>
+          <h3>What economics are final?</h3>
+          <ul class="question-list">
+            <li>What final PIK / preferred return is Ion proposing?</li>
+            <li>What final upside-sharing split is Ion proposing?</li>
+            <li>Does each asset sale immediately flow through the waterfall, or is the waterfall calculated only at the total basket level?</li>
+            <li>Can Animoca repay or buy back Ion's position early?</li>
+            <li>Can we cap Ion's upside after a target return?</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="tag gold">Recourse and control</div>
+          <h3>Can Ion reach beyond the basket?</h3>
+          <ul class="question-list">
+            <li>Is there any guarantee, NAV top-up, margin call, or asset replacement obligation?</li>
+            <li>If Level 1 is not recovered after five years, what exactly can Ion sell?</li>
+            <li>Who decides asset selection, timing, sale price, and buyer?</li>
+            <li>Can Animoca block a forced sale at an unattractive price?</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="tag gold">Valuation</div>
+          <h3>How do valuation changes affect the deal?</h3>
+          <ul class="question-list">
+            <li>Is NAV fixed at signing or updated at closing?</li>
+            <li>What happens if a company raises a down round?</li>
+            <li>What happens if an asset exits early?</li>
+            <li>How much weight is Ion assigning to Colossal?</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="tag gold">Accounting / tax / process</div>
+          <h3>Who needs to review what?</h3>
+          <ul class="question-list">
+            <li>Could the structure be treated as a sale, financing, derivative, or consolidated SPV?</li>
+            <li>Are there tax costs from moving, pledging, or assigning assets?</li>
+            <li>IAP should lead DD and document collection.</li>
+            <li>Strategic Finance should support valuation, NAV reconciliation, scenario model, and internal briefing materials.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band white">
+    <div class="inner">
+      <div class="section-head">
+        <div>
+          <div class="kicker">Current read</div>
+          <h2>Our takeaways, suggestions, and concerns</h2>
+        </div>
+        <p>
+          This is a practical summary after reviewing the email, model, basket, and information request list.
+        </p>
+      </div>
+
+      <div class="takeaway-strip">
+        <div class="panel teal">
+          <div class="tag teal">Takeaway</div>
+          <h3>Useful liquidity, if the reason is clear</h3>
+          <p>Non-recourse liquidity can be attractive if we need cash and want to avoid an outright sale today.</p>
+        </div>
+        <div class="panel gold">
+          <div class="tag gold">Suggestion</div>
+          <h3>Treat it as expensive until proven otherwise</h3>
+          <p>Senior recovery plus upside share may be costly. We should benchmark against alternatives.</p>
+        </div>
+        <div class="panel red">
+          <div class="tag red">Concern</div>
+          <h3>The five-year sale right is the key risk</h3>
+          <p>Even if non-recourse, forced-sale rights could reduce control if the market is weak after five years.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        Bottom line: first present the facts clearly, then ask whether the liquidity need, structure, final terms, and control protections make the deal worth negotiating further.
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Prepared from uploaded Ion Pacific email thread, indicative asset basket, recapitalization model, and standard information request list. Figures are illustrative and subject to final terms.
+  </footer>
+</body>
+</html>
